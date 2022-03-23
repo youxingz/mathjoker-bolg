@@ -29,10 +29,11 @@ export default function CayleyTable({}) {
   const units = integers.filter(i => {
     return gcd(currentSelectInteger, i) === 1
   })
+  const tag = `$\\mathbb Z/${currentSelectInteger} \\mathbb Z$`
 
   useEffect(() => {
     renderLatex()
-  }, [])
+  }, [currentSelectInteger])
 
   return <Layout>
     <Head>
@@ -47,7 +48,7 @@ export default function CayleyTable({}) {
         </div>
         
         <p>
-          <strong>Definition.</strong> Integer Module $N$ <a href='https://www.wikiwand.com/en/Modular_arithmetic#/Integers_modulo_n'>Link Wikipedia</a>
+          <strong>Definition.</strong> Integer Module $N$. See: <a target='_blank' href='https://www.wikiwand.com/en/Modular_arithmetic#/Integers_modulo_n'>Wikipedia</a>
         </p>
         <p>
           Select $n=\ $
@@ -79,10 +80,14 @@ export default function CayleyTable({}) {
           </label>
         </p>
       
+        <div className={styles.cayley_table_header}>
+          {`$\\mathbb Z_{${currentSelectInteger}} \\cong \\mathbb Z/${currentSelectInteger} \\mathbb Z$`}
+        </div>
         <div className={styles.cayley_table_container}>
           <table className={styles.cayley_table}>
             <tr className={styles.header}>
-              <th onMouseOver={()=>{setBlurRow(-1); setBlurCol(-1)}}></th>
+              <th onMouseOver={()=>{setBlurRow(-1); setBlurCol(-1)}}>
+              </th>
               {integers.map(a => {
                 const style4 = showUnit && (units.indexOf(a) > -1) ? styles.unit : ''
                 return <th

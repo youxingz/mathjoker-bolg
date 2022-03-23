@@ -1,3 +1,10 @@
+.cayley_table_header {
+  width: 100%;
+  background-color: #ff9300db;
+  border: 2px #fff solid;
+  color: white;
+  padding: 4px 12px;
+}
 .cayley_table_container {
   overflow: scroll;
 }
