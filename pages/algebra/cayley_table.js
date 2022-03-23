@@ -87,6 +87,7 @@ export default function CayleyTable({}) {
           <table className={styles.cayley_table}>
             <tr className={styles.header}>
               <th onMouseOver={()=>{setBlurRow(-1); setBlurCol(-1)}}>
+                $\times$
               </th>
               {integers.map(a => {
                 const style4 = showUnit && (units.indexOf(a) > -1) ? styles.unit : ''
