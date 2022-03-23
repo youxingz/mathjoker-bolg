@@ -5,16 +5,22 @@ import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
 import Date from '../components/date'
 
+import renderLatex from '/lib/katex_render'
+import { useEffect } from 'react'
 
 const articles = [
   {
     url: 'algebra/cayley_table',
     date: '2022-03-23',
-    title: 'Cayley Table',
+    title: 'The Cayley Table of Integer Module N ($\\mathbb Z/n\\mathbb Z$)',
   }
 ]
 
 export default function Home({ allPostsData }) {
+  useEffect(() => {
+    renderLatex()
+  }, [])
+
   return (
     <Layout home>
       <Head>
@@ -23,7 +29,7 @@ export default function Home({ allPostsData }) {
       <section className={utilStyles.headingMd}>
         <p>
           <strong>Definition 1.</strong> Let MathJoker be a person?al blog, which satisfies 3 properties: <br/>
-          i). Publish something people knows. <br/>
+          i). Post something people know. <br/>
           ii). Do not do 1. <br/>
           iii). Do not do 2. <br/>
         </p>
