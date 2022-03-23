@@ -68,11 +68,11 @@ export default function CayleyTable({}) {
               [...Array(50).keys()].map(i => <option>{i}</option>)
             }
           </select>
-          Show Center:
+          {/* Show Center:
           <label className={[styles.switch, styles.tablecenter].join(' ')}>
             <input type="checkbox" value={showCenter} onChange={(e)=>{setShowCenter(e.target.checked)}}/>
             <span className={[styles.slider, styles.round].join(' ')}></span>
-          </label>
+          </label> */}
           Show Unit:
           <label className={[styles.switch, styles.tableunit].join(' ')}>
             <input type="checkbox" value={showUnit} onChange={(e)=>{setShowUnit(e.target.checked)}}/>
