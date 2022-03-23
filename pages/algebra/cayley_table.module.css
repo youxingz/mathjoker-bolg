@@ -1,0 +1,18 @@
+.cayley_table {
+  width: 100%;
+  text-align: center;
+}
+
+.cayley_table .header {
+  background-color: #ff9504;
+  color: white;
+}
+
+.cayley_table .col_first {
+  background-color: #ff9504;
+  color: white;
+}
+
+.cayley_table .selected {
+  background-color: #dfdfdf;
+}

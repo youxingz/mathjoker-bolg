@@ -1,9 +1,18 @@
 import Head from 'next/head'
 import Layout, { siteTitle } from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
-import { getSortedPostsData } from '../lib/posts'
+// import { getSortedPostsData } from '../lib/posts'
 import Link from 'next/link'
 import Date from '../components/date'
+
+
+const articles = [
+  {
+    url: 'algebra/cayley_table',
+    date: '2022-03-23',
+    title: 'Cayley Table',
+  }
+]
 
 export default function Home({ allPostsData }) {
   return (
@@ -13,21 +22,18 @@ export default function Home({ allPostsData }) {
       </Head>
       <section className={utilStyles.headingMd}>
         <p>
-          Hello, I’m <strong>Shu</strong>. I’m a software engineer and a
-          translator (English/Japanese). You can contact me on{' '}
-          <a href="https://twitter.com/chibicode">Twitter</a>.
-        </p>
-        <p>
-          (This is a sample website - you’ll be building a site like this in{' '}
-          <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
+          <strong>Definition 1.</strong> Let MathJoker be a person?al blog, which satisfies 3 properties: <br/>
+          i). Publish something people knows. <br/>
+          ii). Do not do 1. <br/>
+          iii). Do not do 2. <br/>
         </p>
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
         <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title }) => (
-            <li className={utilStyles.listItem} key={id}>
-              <Link href={`/posts/${id}`}>
+          {articles.map(({ url, date, title }) => (
+            <li className={utilStyles.listItem} key={url}>
+              <Link href={`/${url}`}>
                 <a>{title}</a>
               </Link>
               <br />
@@ -42,11 +48,11 @@ export default function Home({ allPostsData }) {
   )
 }
 
-export async function getStaticProps() {
-  const allPostsData = getSortedPostsData()
-  return {
-    props: {
-      allPostsData
-    }
-  }
-}
+// export async function getStaticProps() {
+//   const allPostsData = getSortedPostsData()
+//   return {
+//     props: {
+//       allPostsData
+//     }
+//   }
+// }
