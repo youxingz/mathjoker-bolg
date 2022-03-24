@@ -2,7 +2,7 @@ import Layout from '../../components/layout'
 import Head from 'next/head'
 import Date from '../../components/date'
 import utilStyles from '../../styles/utils.module.css'
-import styles from './cayley_table.module.css'
+import styles from './cayley_table_of_integer_module_n.module.css'
 
 import {useState, useEffect} from 'react'
 import renderLatex from '/lib/katex_render'
@@ -65,7 +65,7 @@ export default function CayleyTable({}) {
             }}
             >
             {
-              [...Array(50).keys()].map(i => <option>{i}</option>)
+              [...Array(49).keys()].map(i => <option>{i+1}</option>)
             }
           </select>
           {/* Show Center:

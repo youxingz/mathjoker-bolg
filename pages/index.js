@@ -10,10 +10,15 @@ import { useEffect } from 'react'
 
 const articles = [
   {
-    url: 'algebra/cayley_table',
+    url: 'algebra/cayley_table_of_integer_module_n',
     date: '2022-03-23',
     title: 'The Cayley Table of Integer Module N ($\\mathbb Z/n\\mathbb Z$)',
-  }
+  },
+  {
+    url: 'algebra/cayley_table_of_symmetric_group',
+    date: '2022-03-25',
+    title: 'The Cayley Table of Symmetric Group ($S_n$)',
+  },
 ]
 
 export default function Home({ allPostsData }) {
