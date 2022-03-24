@@ -192,7 +192,7 @@ export default function CayleyTable({}) {
 
   return <Layout>
     <Head>
-      <title>Cayley Table</title>
+      <title>Cayley Table of Symmetric Group S_n</title>
     </Head>
       <article>
         <h1 className={utilStyles.headingXl}>

@@ -37,7 +37,7 @@ export default function CayleyTable({}) {
 
   return <Layout>
     <Head>
-      <title>Cayley Table</title>
+      <title>Cayley Table of Integer Module N</title>
     </Head>
       <article>
         <h1 className={utilStyles.headingXl}>
