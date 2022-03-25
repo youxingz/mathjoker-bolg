@@ -29,7 +29,7 @@ export default function CayleyTable({}) {
   const units = integers.filter(i => {
     return gcd(currentSelectInteger, i) === 1
   })
-  const tag = `$\\mathbb Z/${currentSelectInteger} \\mathbb Z$`
+  // const tag = `$\\mathbb Z/${currentSelectInteger} \\mathbb Z$`
 
   useEffect(() => {
     renderLatex()
@@ -65,7 +65,7 @@ export default function CayleyTable({}) {
             }}
             >
             {
-              [...Array(49).keys()].map(i => <option>{i+1}</option>)
+              [...Array(49).keys()].map(i => <option key={'k'+(i+1)}>{i+1}</option>)
             }
           </select>
           {/* Show Center:
@@ -83,17 +83,18 @@ export default function CayleyTable({}) {
         <div className={styles.cayley_table_header}>
           {`$\\mathbb Z_{${currentSelectInteger}} \\cong \\mathbb Z/${currentSelectInteger} \\mathbb Z$`}
         </div>
-        <div className={styles.cayley_table_container}>
+        <div className={styles.cayley_table_container} cellspacing="0" cellpadding="0">
           <table className={styles.cayley_table}>
             <tbody style={{whiteSpace: 'pre'}}>
               <tr className={styles.header}>
-                <th onMouseOver={()=>{setBlurRow(-1); setBlurCol(-1)}}>
+                <th key='product' className={styles.th} onMouseOver={()=>{setBlurRow(-1); setBlurCol(-1)}}>
                   $\times$
                 </th>
                 {integers.map(a => {
                   const style4 = showUnit && (units.indexOf(a) > -1) ? styles.unit : ''
                   return <th
-                    className={style4}
+                    key={'h_'+a}
+                    className={[style4, styles.th].join(' ')}
                     onMouseOver={()=>{setBlurRow(-1); setBlurCol(-1)}}
                     >
                       {a}
@@ -111,7 +112,8 @@ export default function CayleyTable({}) {
                     const style4 = showUnit && (value == 1) ? styles.unit : ''
 
                     return <td
-                      className={[style4, style3, style2, style1].join(' ')}
+                      key={'v_'+a+'x'+b}
+                      className={[style4, style3, style2, style1, styles.td].join(' ')}
                       onMouseOver={()=>{setBlurRow(b); setBlurCol(a)}}
                       onClick={()=>{
                         const indexA = fixedCols.indexOf(a)
@@ -135,9 +137,10 @@ export default function CayleyTable({}) {
                     </td>
                   })
                   const style4 = showUnit && (units.indexOf(b) > -1) ? styles.unit : ''
-                  return <tr>
+                  return <tr key={'line_'+b}>
                     <td
-                      className={[styles.col_first, style4].join(' ')}
+                      key={'l_'+b}
+                      className={[styles.col_first, style4, styles.td].join(' ')}
                       onMouseOver={()=>{setBlurRow(-1); setBlurCol(-1)}}
                     >
                       {b}
