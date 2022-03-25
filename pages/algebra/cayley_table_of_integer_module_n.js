@@ -85,66 +85,68 @@ export default function CayleyTable({}) {
         </div>
         <div className={styles.cayley_table_container}>
           <table className={styles.cayley_table}>
-            <tr className={styles.header}>
-              <th onMouseOver={()=>{setBlurRow(-1); setBlurCol(-1)}}>
-                $\times$
-              </th>
-              {integers.map(a => {
-                const style4 = showUnit && (units.indexOf(a) > -1) ? styles.unit : ''
-                return <th
-                  className={style4}
-                  onMouseOver={()=>{setBlurRow(-1); setBlurCol(-1)}}
-                  >
-                    {a}
-                  </th>
-              })}
-            </tr>
-            {
-              integers.map(b => {
-                const tds = integers.map(a => {
-                  const style1 = showCenter && a == b ? styles.center : ''
-                  const style2 = (b == blurRow || a == blurCol) ? styles.selected : ''
-                  const style3 = (fixedCols.indexOf(a) > -1 || fixedRows.indexOf(b) > -1) ? styles.fixed : ''
-                  
-                  const value = (a*b)%(currentSelectInteger)
-                  const style4 = showUnit && (value == 1) ? styles.unit : ''
-
-                  return <td
-                    className={[style4, style3, style2, style1].join(' ')}
-                    onMouseOver={()=>{setBlurRow(b); setBlurCol(a)}}
-                    onClick={()=>{
-                      const indexA = fixedCols.indexOf(a)
-                      const indexB = fixedRows.indexOf(b)
-                      if (indexA > -1 && indexB > -1) {
-                        // release it
-                        fixedCols.splice(indexA, 1)
-                        fixedRows.splice(indexB, 1)
-                        setFixedCols(fixedCols)
-                        setFixedRows(fixedRows)
-                      } else {
-                        // add new record
-                        setFixedCols(fixedCols.concat(a))
-                        setFixedRows(fixedRows.concat(b))
-                      }
-                      console.log(fixedCols)
-                      console.log(fixedRows)
-                    }}
-                    >
-                    {value}
-                  </td>
-                })
-                const style4 = showUnit && (units.indexOf(b) > -1) ? styles.unit : ''
-                return <tr>
-                  <td
-                    className={[styles.col_first, style4].join(' ')}
+            <tbody style={{whiteSpace: 'pre'}}>
+              <tr className={styles.header}>
+                <th onMouseOver={()=>{setBlurRow(-1); setBlurCol(-1)}}>
+                  $\times$
+                </th>
+                {integers.map(a => {
+                  const style4 = showUnit && (units.indexOf(a) > -1) ? styles.unit : ''
+                  return <th
+                    className={style4}
                     onMouseOver={()=>{setBlurRow(-1); setBlurCol(-1)}}
-                  >
-                    {b}
-                  </td>
-                  { tds }
-                </tr>
-              })
-            }
+                    >
+                      {a}
+                    </th>
+                })}
+              </tr>
+              {
+                integers.map(b => {
+                  const tds = integers.map(a => {
+                    const style1 = showCenter && a == b ? styles.center : ''
+                    const style2 = (b == blurRow || a == blurCol) ? styles.selected : ''
+                    const style3 = (fixedCols.indexOf(a) > -1 || fixedRows.indexOf(b) > -1) ? styles.fixed : ''
+                    
+                    const value = (a*b)%(currentSelectInteger)
+                    const style4 = showUnit && (value == 1) ? styles.unit : ''
+
+                    return <td
+                      className={[style4, style3, style2, style1].join(' ')}
+                      onMouseOver={()=>{setBlurRow(b); setBlurCol(a)}}
+                      onClick={()=>{
+                        const indexA = fixedCols.indexOf(a)
+                        const indexB = fixedRows.indexOf(b)
+                        if (indexA > -1 && indexB > -1) {
+                          // release it
+                          fixedCols.splice(indexA, 1)
+                          fixedRows.splice(indexB, 1)
+                          setFixedCols(fixedCols)
+                          setFixedRows(fixedRows)
+                        } else {
+                          // add new record
+                          setFixedCols(fixedCols.concat(a))
+                          setFixedRows(fixedRows.concat(b))
+                        }
+                        console.log(fixedCols)
+                        console.log(fixedRows)
+                      }}
+                      >
+                      {value}
+                    </td>
+                  })
+                  const style4 = showUnit && (units.indexOf(b) > -1) ? styles.unit : ''
+                  return <tr>
+                    <td
+                      className={[styles.col_first, style4].join(' ')}
+                      onMouseOver={()=>{setBlurRow(-1); setBlurCol(-1)}}
+                    >
+                      {b}
+                    </td>
+                    { tds }
+                  </tr>
+                })
+              }
+            </tbody>
           </table>
         </div>
       </article>

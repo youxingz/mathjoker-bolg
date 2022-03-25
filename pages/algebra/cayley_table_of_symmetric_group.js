@@ -241,72 +241,72 @@ export default function CayleyTable({}) {
         </div>
         <div className={styles.cayley_table_container}>
           <table className={styles.cayley_table}>
-            <tbody>
-            <tr className={styles.header}>
-              <th onMouseOver={()=>{setBlurRow(-1); setBlurCol(-1)}}>
-                $\times$
-              </th>
-              {permutations.map(a => {
-                const label = (a.length == currentSelectInteger) ? ' e ' : ptstring(a)
-                return <th
-                  // className={style4}
-                  onMouseOver={()=>{setBlurRow(-1); setBlurCol(-1)}}
-                  >
-                    {label}
-                  </th>
-              })}
-            </tr>
-            {
-              permutations.map(b => {
-                const pt_b = ptstring(b)
-                const tds = permutations.map(a => {
-                  const pt_a = ptstring(a)
-                  const style2 = (pt_b == blurRow || pt_a == blurCol) ? styles.selected : ''
-                  const style3 = (fixedCols.indexOf(pt_a) > -1 || fixedRows.indexOf(pt_b) > -1) ? styles.fixed : ''
-                  
-                  const value = ptproduct(a,b, currentSelectInteger)
-                  const label = (value.length == currentSelectInteger) ? ' e ' : ptstring(value)
-
-                  // const style4 = showUnit && (value == 1) ? styles.unit : ''
-
-                  return <td
-                    className={[style3, style2].join(' ')}
-                    onMouseOver={()=>{setBlurRow(pt_b); setBlurCol(pt_a)}}
-                    onClick={()=>{
-                      const indexA = fixedCols.indexOf(pt_a)
-                      const indexB = fixedRows.indexOf(pt_b)
-                      if (indexA > -1 && indexB > -1) {
-                        // release it
-                        fixedCols.splice(indexA, 1)
-                        fixedRows.splice(indexB, 1)
-                        setFixedCols(fixedCols)
-                        setFixedRows(fixedRows)
-                      } else {
-                        // add new record
-                        setFixedCols(fixedCols.concat(pt_a))
-                        setFixedRows(fixedRows.concat(pt_b))
-                      }
-                      // console.log(fixedCols)
-                      // console.log(fixedRows)
-                    }}
-                    >
-                    {label}
-                  </td>
-                })
-                // const style4 = showUnit && (units.indexOf(b) > -1) ? styles.unit : ''
-
-                const label = (b.length == currentSelectInteger) ? ' e ' : ptstring(b)
-                return <tr>
-                  <td
-                    className={[styles.col_first].join(' ')}
+            <tbody style={{whiteSpace: 'pre'}}>
+              <tr className={styles.header}>
+                <th onMouseOver={()=>{setBlurRow(-1); setBlurCol(-1)}}>
+                  $\times$
+                </th>
+                {permutations.map(a => {
+                  const label = (a.length == currentSelectInteger) ? ' e ' : ptstring(a)
+                  return <th
+                    // className={style4}
                     onMouseOver={()=>{setBlurRow(-1); setBlurCol(-1)}}
-                  >
-                    {label}
-                  </td>
-                  { tds }
-                </tr>
-              })
-            }
+                    >
+                      {label}
+                    </th>
+                })}
+              </tr>
+              {
+                permutations.map(b => {
+                  const pt_b = ptstring(b)
+                  const tds = permutations.map(a => {
+                    const pt_a = ptstring(a)
+                    const style2 = (pt_b == blurRow || pt_a == blurCol) ? styles.selected : ''
+                    const style3 = (fixedCols.indexOf(pt_a) > -1 || fixedRows.indexOf(pt_b) > -1) ? styles.fixed : ''
+                    
+                    const value = ptproduct(a,b, currentSelectInteger)
+                    const label = (value.length == currentSelectInteger) ? ' e ' : ptstring(value)
+
+                    // const style4 = showUnit && (value == 1) ? styles.unit : ''
+
+                    return <td
+                      className={[style3, style2].join(' ')}
+                      onMouseOver={()=>{setBlurRow(pt_b); setBlurCol(pt_a)}}
+                      onClick={()=>{
+                        const indexA = fixedCols.indexOf(pt_a)
+                        const indexB = fixedRows.indexOf(pt_b)
+                        if (indexA > -1 && indexB > -1) {
+                          // release it
+                          fixedCols.splice(indexA, 1)
+                          fixedRows.splice(indexB, 1)
+                          setFixedCols(fixedCols)
+                          setFixedRows(fixedRows)
+                        } else {
+                          // add new record
+                          setFixedCols(fixedCols.concat(pt_a))
+                          setFixedRows(fixedRows.concat(pt_b))
+                        }
+                        // console.log(fixedCols)
+                        // console.log(fixedRows)
+                      }}
+                      >
+                      {label}
+                    </td>
+                  })
+                  // const style4 = showUnit && (units.indexOf(b) > -1) ? styles.unit : ''
+
+                  const label = (b.length == currentSelectInteger) ? ' e ' : ptstring(b)
+                  return <tr>
+                    <td
+                      className={[styles.col_first].join(' ')}
+                      onMouseOver={()=>{setBlurRow(-1); setBlurCol(-1)}}
+                    >
+                      {label}
+                    </td>
+                    { tds }
+                  </tr>
+                })
+              }
             </tbody>
           </table>
         </div>
