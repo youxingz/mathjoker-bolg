@@ -10,6 +10,11 @@ import { useEffect } from 'react'
 
 const articles = [
   {
+    url: 'numbers/polygonal_numbers',
+    date: '2022-03-25',
+    title: 'The Table of Polygonal Numbers',
+  },
+  {
     url: 'algebra/cayley_table_of_symmetric_group',
     date: '2022-03-25',
     title: 'The Cayley Table of Symmetric Group ($S_n$)',
