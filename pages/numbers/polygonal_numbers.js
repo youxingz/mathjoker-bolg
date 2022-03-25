@@ -200,7 +200,8 @@ export default function CayleyTable({}) {
                       { (b == 1) && `$n-\\frac{1}{2}n(n-1)$`}
                       { (b == 2) && `$n$`}
                       { (b == 3) && `$n+\\frac{1}{2}n(n-1)$`}
-                      { (b > 3) && (( b % 2 == 0) ? `$n+${parseInt(b/2)}n(n-1)$` : `$n+\\frac{${b-2}}{2}n(n-1)$`)}
+                      { (b == 4) && `$n^2$`}
+                      { (b > 4) && (( b % 2 == 0) ? `$n+${parseInt((b-2)/2)}n(n-1)$` : `$n+\\frac{${b-2}}{2}n(n-1)$`)}
                     </td>
                     { tds }
                   </tr>
