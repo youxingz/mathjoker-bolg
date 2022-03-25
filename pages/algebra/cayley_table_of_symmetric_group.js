@@ -217,6 +217,7 @@ export default function CayleyTable({}) {
 
   useEffect(() => {
     const permuts = permutationsOf(parseInt(currentSelectInteger))
+    console.log({permuts, currentSelectInteger})
     setPermutations(permuts)
     setCenters(centersOfPermutations(permuts, currentSelectInteger, hideFixedPoint))
     const identityElement = [...Array(currentSelectInteger).keys()].map(i=>(i+1)).join('')
@@ -285,11 +286,11 @@ export default function CayleyTable({}) {
                 <th key="product" className={styles.th} onMouseOver={()=>{setBlurRow(-1); setBlurCol(-1)}}>
                   $\times$
                 </th>
-                {permutations.map(a => {
+                {permutations.map((a,index) => {
                   const label = (a.length == currentSelectInteger) ? ' () ' : ptstring(a, hideFixedPoint)
                   const style4 = showCenter && (a.length == currentSelectInteger || centers.indexOf(label) > -1) ? styles.unit : ''
                   return <th
-                    key={'h_'+label}
+                    key={'h_'+index}
                     className={[style4, styles.th].join(' ')}
                     onMouseOver={()=>{setBlurRow(-1); setBlurCol(-1)}}
                     >
@@ -298,9 +299,9 @@ export default function CayleyTable({}) {
                 })}
               </tr>
               {
-                permutations.map(b => {
+                permutations.map((b,indexB) => {
                   const pt_b = ptstring(b, hideFixedPoint)
-                  const tds = permutations.map(a => {
+                  const tds = permutations.map((a, indexA) => {
                     const pt_a = ptstring(a, hideFixedPoint)
                     const style2 = (pt_b == blurRow || pt_a == blurCol) ? styles.selected : ''
                     const style3 = (fixedCols.indexOf(pt_a) > -1 || fixedRows.indexOf(pt_b) > -1) ? styles.fixed : ''
@@ -318,7 +319,7 @@ export default function CayleyTable({}) {
                     // }
 
                     return <td
-                      key={'v_'+pt_a+'x'+pt_b}
+                      key={'v_'+indexA+'x'+indexB}
                       className={[style4, style3, style2].join(' ')}
                       onMouseOver={()=>{setBlurRow(pt_b); setBlurCol(pt_a)}}
                       onClick={()=>{
@@ -348,9 +349,9 @@ export default function CayleyTable({}) {
                   // const style4 = showCenter && centers.indexOf(label) > -1 ? styles.unit : ''
                   const style4 = showCenter && (b.length == currentSelectInteger || centers.indexOf(label) > -1) ? styles.unit : ''
 
-                  return <tr key={'line_'+label}>
+                  return <tr key={'line_'+indexB}>
                     <td
-                      key={'l_'+label}
+                      key={'l_'+indexB}
                       className={[style4, styles.col_first, styles.td].join(' ')}
                       onMouseOver={()=>{setBlurRow(-1); setBlurCol(-1)}}
                     >
