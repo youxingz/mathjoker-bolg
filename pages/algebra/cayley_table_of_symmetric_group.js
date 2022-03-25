@@ -115,10 +115,11 @@ const permutationsOf = (n) => {
 // console.log('p::', permutations(3))
 
 
-const ptstring = (cycleProd=[]) => {
-  return cycleProd.map(cycle => {
-    return  "(" + cycle.join('') + ")"
-  }).join('')
+const ptstring = (cycleProd=[], hideFixedPoint) => {
+  if (hideFixedPoint) {
+    return cycleProd.filter(cycle=>cycle.length != 1).map(cycle => { return  "(" + cycle.join('') + ")" }).join('')
+  }
+  return cycleProd.map(cycle => { return  "(" + cycle.join('') + ")" }).join('')
 }
 
 const ptproduct = (cycle_a, cycle_b, n) => {
@@ -168,6 +169,32 @@ const ptproduct = (cycle_a, cycle_b, n) => {
   return cycleprod
 }
 
+const centersOfPermutations = (permutations=[], n, hideFixedPoint) => {
+  console.log(permutations)
+  const centers = []
+  for (let a of permutations) {
+    if (a.length == n) {
+      centers.push(ptstring(a, hideFixedPoint))
+      continue
+    }
+    let flag = true
+    for (let b of permutations) {
+      const prodLeft = ptstring(ptproduct(a, b, n), hideFixedPoint)
+      const prodRight = ptstring(ptproduct(b, a, n), hideFixedPoint)
+      console.log({prodLeft, prodRight})
+      if (prodLeft != prodRight) {
+        flag = false
+        break
+      }
+    }
+    console.log('----------------------')
+    if (flag) {
+      centers.push(ptstring(a, hideFixedPoint))
+    }
+  }
+  return centers
+}
+
 
 export default function CayleyTable({}) {
   const [currentSelectInteger, setCurrentSelectInteger] = useState(3)
@@ -176,17 +203,20 @@ export default function CayleyTable({}) {
   const [fixedCols, setFixedCols] = useState([])
   const [fixedRows, setFixedRows] = useState([])
 
+  const [hideFixedPoint, setHideFixedPoint] = useState(true)
   const [showCenter, setShowCenter] = useState(false)
-  const [showUnit, setShowUnit] = useState(false)
 
   const [permutations, setPermutations] = useState(permutationsOf(currentSelectInteger))
 
   // const permutations = permutationsOf(parseInt(currentSelectInteger))
   // 
+  const [centers, setCenters] = useState([]) // normal subgroup
+
 
   useEffect(() => {
-    setPermutations(permutationsOf(parseInt(currentSelectInteger)))
-    // console.log(permutations)
+    const permuts = permutationsOf(parseInt(currentSelectInteger))
+    setPermutations(permuts)
+    setCenters(centersOfPermutations(permuts, currentSelectInteger, hideFixedPoint))
     renderLatex()
   }, [currentSelectInteger])
 
@@ -223,16 +253,16 @@ export default function CayleyTable({}) {
               [...Array(7).keys()].map(i => <option key={'k'+(i+1)} value={''+(i+1)}>{i+1}</option>)
             }
           </select>
-          {/* Show Center:
+          Hide Fixed Point:
           <label className={[styles.switch, styles.tablecenter].join(' ')}>
+            <input type="checkbox" value={hideFixedPoint} onChange={(e)=>{setHideFixedPoint(e.target.checked)}}/>
+            <span className={[styles.slider, styles.round].join(' ')}></span>
+          </label>
+          Show Centralizer:
+          <label className={[styles.switch, styles.tableunit].join(' ')}>
             <input type="checkbox" value={showCenter} onChange={(e)=>{setShowCenter(e.target.checked)}}/>
             <span className={[styles.slider, styles.round].join(' ')}></span>
-          </label> */}
-          {/* Show Unit:
-          <label className={[styles.switch, styles.tableunit].join(' ')}>
-            <input type="checkbox" value={showUnit} onChange={(e)=>{setShowUnit(e.target.checked)}}/>
-            <span className={[styles.slider, styles.round].join(' ')}></span>
-          </label> */}
+          </label>
         </p>
       
         <div className={styles.cayley_table_header}>
@@ -247,9 +277,10 @@ export default function CayleyTable({}) {
                   $\times$
                 </th>
                 {permutations.map(a => {
-                  const label = (a.length == currentSelectInteger) ? ' e ' : ptstring(a)
+                  const label = (a.length == currentSelectInteger) ? ' () ' : ptstring(a, hideFixedPoint)
+                  const style4 = showCenter && (a.length == currentSelectInteger || centers.indexOf(label) > -1) ? styles.unit : ''
                   return <th
-                    // className={style4}
+                    className={style4}
                     onMouseOver={()=>{setBlurRow(-1); setBlurCol(-1)}}
                     >
                       {label}
@@ -258,19 +289,26 @@ export default function CayleyTable({}) {
               </tr>
               {
                 permutations.map(b => {
-                  const pt_b = ptstring(b)
+                  const pt_b = ptstring(b, hideFixedPoint)
                   const tds = permutations.map(a => {
-                    const pt_a = ptstring(a)
+                    const pt_a = ptstring(a, hideFixedPoint)
                     const style2 = (pt_b == blurRow || pt_a == blurCol) ? styles.selected : ''
                     const style3 = (fixedCols.indexOf(pt_a) > -1 || fixedRows.indexOf(pt_b) > -1) ? styles.fixed : ''
                     
                     const value = ptproduct(a,b, currentSelectInteger)
-                    const label = (value.length == currentSelectInteger) ? ' e ' : ptstring(value)
-
-                    // const style4 = showUnit && (value == 1) ? styles.unit : ''
+                    const label = (value.length == currentSelectInteger) ? ' () ' : ptstring(value, hideFixedPoint)
+                    
+                    let style4 = ''
+                    // if (showCenter) {
+                    //   const value2 = ptproduct(b,a, currentSelectInteger)
+                    //   const label2 = (value2.length == currentSelectInteger) ? ' () ' : ptstring(value2, hideFixedPoint)
+                    //   if (label == label2) { // is comutative
+                    //     style4 = styles.unit
+                    //   }
+                    // }
 
                     return <td
-                      className={[style3, style2].join(' ')}
+                      className={[style4, style3, style2].join(' ')}
                       onMouseOver={()=>{setBlurRow(pt_b); setBlurCol(pt_a)}}
                       onClick={()=>{
                         const indexA = fixedCols.indexOf(pt_a)
@@ -293,12 +331,15 @@ export default function CayleyTable({}) {
                       {label}
                     </td>
                   })
-                  // const style4 = showUnit && (units.indexOf(b) > -1) ? styles.unit : ''
+                  // const style4 = showCenter && (units.indexOf(b) > -1) ? styles.unit : ''
 
-                  const label = (b.length == currentSelectInteger) ? ' e ' : ptstring(b)
+                  const label = (b.length == currentSelectInteger) ? ' () ' : ptstring(b, hideFixedPoint)
+                  // const style4 = showCenter && centers.indexOf(label) > -1 ? styles.unit : ''
+                  const style4 = showCenter && (b.length == currentSelectInteger || centers.indexOf(label) > -1) ? styles.unit : ''
+
                   return <tr>
                     <td
-                      className={[styles.col_first].join(' ')}
+                      className={[style4, styles.col_first].join(' ')}
                       onMouseOver={()=>{setBlurRow(-1); setBlurCol(-1)}}
                     >
                       {label}
