@@ -255,12 +255,12 @@ export default function CayleyTable({}) {
           </select>
           Hide Fixed Point:
           <label className={[styles.switch, styles.tablecenter].join(' ')}>
-            <input type="checkbox" value={hideFixedPoint} onChange={(e)=>{setHideFixedPoint(e.target.checked)}}/>
+            <input type="checkbox" checked={hideFixedPoint} onChange={(e)=>{setHideFixedPoint(e.target.checked)}}/>
             <span className={[styles.slider, styles.round].join(' ')}></span>
           </label>
           Show Centralizer:
           <label className={[styles.switch, styles.tableunit].join(' ')}>
-            <input type="checkbox" value={showCenter} onChange={(e)=>{setShowCenter(e.target.checked)}}/>
+            <input type="checkbox" checked={showCenter} onChange={(e)=>{setShowCenter(e.target.checked)}}/>
             <span className={[styles.slider, styles.round].join(' ')}></span>
           </label>
         </p>
