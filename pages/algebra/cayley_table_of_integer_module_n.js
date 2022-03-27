@@ -15,7 +15,7 @@ const gcd = function(a, b) {
 }
 
 export default function CayleyTable({}) {
-  const [currentSelectInteger, setCurrentSelectInteger] = useState(8)
+  const [currentSelectInteger, setCurrentSelectInteger] = useState(7)
   const [blurCol, setBlurCol] = useState(-1)
   const [blurRow, setBlurRow] = useState(-1)
   const [fixedCols, setFixedCols] = useState([])
@@ -23,6 +23,9 @@ export default function CayleyTable({}) {
 
   const [showCenter, setShowCenter] = useState(false)
   const [showUnit, setShowUnit] = useState(false)
+
+  const [headerTag, setHeaderTag] = useState('')
+
 
   const integers = [...Array(currentSelectInteger-1).keys()].map(i=>i+1)
 
@@ -32,8 +35,14 @@ export default function CayleyTable({}) {
   // const tag = `$\\mathbb Z/${currentSelectInteger} \\mathbb Z$`
 
   useEffect(() => {
+    const tag = ((showUnit && units.length == currentSelectInteger - 1) ? `【 $\\mathbb Z_{${currentSelectInteger}}\\text{ is a field}$ 】` : '')
+    setHeaderTag(tag)
+    // renderLatex()
+  }, [currentSelectInteger, showUnit])
+
+  useEffect(() => {
     renderLatex()
-  }, [currentSelectInteger])
+  }, [headerTag])
 
   return <Layout>
     <Head>
@@ -56,7 +65,7 @@ export default function CayleyTable({}) {
             className={styles.select}
             value={currentSelectInteger}
             onChange={(e)=>{
-              setCurrentSelectInteger(e.target.value)
+              setCurrentSelectInteger(parseInt(e.target.value))
               // reset all
               setFixedCols([])
               setFixedRows([])
@@ -81,9 +90,9 @@ export default function CayleyTable({}) {
         </p>
       
         <div className={styles.cayley_table_header}>
-          {`$\\mathbb Z_{${currentSelectInteger}} \\cong \\mathbb Z/${currentSelectInteger} \\mathbb Z$`}
+          {`$\\mathbb Z_{${currentSelectInteger}} \\cong \\mathbb Z/${currentSelectInteger} \\mathbb Z$ ${headerTag}`}
         </div>
-        <div className={styles.cayley_table_container} cellspacing="0" cellpadding="0">
+        <div className={styles.cayley_table_container} cellSpacing="0" cellPadding="0">
           <table className={styles.cayley_table}>
             <tbody style={{whiteSpace: 'pre'}}>
               <tr className={styles.header}>
