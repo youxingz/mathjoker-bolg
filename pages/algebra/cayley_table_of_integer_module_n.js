@@ -36,7 +36,8 @@ export default function CayleyTable({}) {
 
   useEffect(() => {
     const tag = ((showUnit && units.length == currentSelectInteger - 1) ? `【 $\\mathbb Z_{${currentSelectInteger}}\\text{ is a field}$ 】` : '')
-    setHeaderTag(tag)
+    const header_tag = `$\\mathbb Z_{${currentSelectInteger}} \\cong \\mathbb Z/${currentSelectInteger} \\mathbb Z$ ${tag}`
+    setHeaderTag(header_tag)
     // renderLatex()
   }, [currentSelectInteger, showUnit])
 
@@ -90,7 +91,7 @@ export default function CayleyTable({}) {
         </p>
       
         <div className={styles.cayley_table_header}>
-          {`$\\mathbb Z_{${currentSelectInteger}} \\cong \\mathbb Z/${currentSelectInteger} \\mathbb Z$ ${headerTag}`}
+          {headerTag}
         </div>
         <div className={styles.cayley_table_container} cellSpacing="0" cellPadding="0">
           <table className={styles.cayley_table}>

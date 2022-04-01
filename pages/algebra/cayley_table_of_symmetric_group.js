@@ -195,6 +195,13 @@ const centersOfPermutations = (permutations=[], n, hideFixedPoint) => {
   return centers
 }
 
+const isEvenPermutation = (permu) => {
+  let cycle_number = 0
+  for (let p of permu) {
+    cycle_number += (p.length - 1)
+  }
+  return cycle_number % 2 == 0
+}
 
 export default function CayleyTable({}) {
   const [currentSelectInteger, setCurrentSelectInteger] = useState(3)
@@ -205,6 +212,7 @@ export default function CayleyTable({}) {
 
   const [hideFixedPoint, setHideFixedPoint] = useState(true)
   const [showCenter, setShowCenter] = useState(false)
+  const [showEvenPermutation, setShowEvenPermutation] = useState(false)
 
   const [permutations, setPermutations] = useState(permutationsOf(currentSelectInteger))
 
@@ -214,15 +222,14 @@ export default function CayleyTable({}) {
 
   const [headerTag, setHeaderTag] = useState('')
 
-
   useEffect(() => {
     const permuts = permutationsOf(parseInt(currentSelectInteger))
-    console.log({permuts, currentSelectInteger})
+    // console.log({permuts, currentSelectInteger})
     setPermutations(permuts)
     setCenters(centersOfPermutations(permuts, currentSelectInteger, hideFixedPoint))
-    const identityElement = [...Array(currentSelectInteger).keys()].map(i=>(i+1)).join('')
+    // const identityElement = [...Array(currentSelectInteger).keys()].map(i=>(i+1)).join('')
     const tag = `$S_{${currentSelectInteger}} \\text{ has order: }${currentSelectInteger}! = ${[1, 2, 6, 24, 120, 720, 5040][currentSelectInteger-1]}$`
-    + `, $\\text{Identity}:\\ e=(${identityElement})$`
+    + `, $\\text{Identity}:\\ e=()$`
     setHeaderTag(tag)
   }, [currentSelectInteger])
 
@@ -264,14 +271,21 @@ export default function CayleyTable({}) {
               [...Array(6).keys()].map(i => <option key={'k'+(i+1)} value={''+(i+1)}>{i+1}</option>)
             }
           </select>
+          <br/>
           Hide Fixed Point:
           <label className={[styles.switch, styles.tablecenter].join(' ')}>
             <input type="checkbox" checked={hideFixedPoint} onChange={(e)=>{setHideFixedPoint(e.target.checked)}}/>
             <span className={[styles.slider, styles.round].join(' ')}></span>
           </label>
-          Show Centralizer:
+          {/* Show Centralizer:
           <label className={[styles.switch, styles.tableunit].join(' ')}>
             <input type="checkbox" checked={showCenter} onChange={(e)=>{setShowCenter(e.target.checked)}}/>
+            <span className={[styles.slider, styles.round].join(' ')}></span>
+          </label> */}
+          <br/>
+          Show Even Permutation:
+          <label className={[styles.switch, styles.tableunit].join(' ')}>
+            <input type="checkbox" checked={showEvenPermutation} onChange={(e)=>{setShowEvenPermutation(e.target.checked)}}/>
             <span className={[styles.slider, styles.round].join(' ')}></span>
           </label>
         </p>
@@ -288,7 +302,8 @@ export default function CayleyTable({}) {
                 </th>
                 {permutations.map((a,index) => {
                   const label = (a.length == currentSelectInteger) ? ' () ' : ptstring(a, hideFixedPoint)
-                  const style4 = showCenter && (a.length == currentSelectInteger || centers.indexOf(label) > -1) ? styles.unit : ''
+                  // const style4 = showCenter && (a.length == currentSelectInteger || centers.indexOf(label) > -1) ? styles.unit : ''
+                  const style4 = showEvenPermutation && isEvenPermutation(a) ? styles.unit : ''
                   return <th
                     key={'h_'+index}
                     className={[style4, styles.th].join(' ')}
@@ -347,7 +362,8 @@ export default function CayleyTable({}) {
 
                   const label = (b.length == currentSelectInteger) ? ' () ' : ptstring(b, hideFixedPoint)
                   // const style4 = showCenter && centers.indexOf(label) > -1 ? styles.unit : ''
-                  const style4 = showCenter && (b.length == currentSelectInteger || centers.indexOf(label) > -1) ? styles.unit : ''
+                  // const style4 = showCenter && (b.length == currentSelectInteger || centers.indexOf(label) > -1) ? styles.unit : ''
+                  const style4 = showEvenPermutation && isEvenPermutation(b) ? styles.unit : ''
 
                   return <tr key={'line_'+indexB}>
                     <td
