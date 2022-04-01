@@ -213,6 +213,7 @@ export default function CayleyTable({}) {
   const [hideFixedPoint, setHideFixedPoint] = useState(true)
   const [showCenter, setShowCenter] = useState(false)
   const [showEvenPermutation, setShowEvenPermutation] = useState(false)
+  const [showAn, setShowAn] = useState(false)
 
   const [permutations, setPermutations] = useState(permutationsOf(currentSelectInteger))
 
@@ -224,14 +225,18 @@ export default function CayleyTable({}) {
 
   useEffect(() => {
     const permuts = permutationsOf(parseInt(currentSelectInteger))
+    if (showAn) {
+      setPermutations(permuts.filter(isEvenPermutation))
+    } else {
+      setPermutations(permuts)
+    }
     // console.log({permuts, currentSelectInteger})
-    setPermutations(permuts)
     setCenters(centersOfPermutations(permuts, currentSelectInteger, hideFixedPoint))
     // const identityElement = [...Array(currentSelectInteger).keys()].map(i=>(i+1)).join('')
     const tag = `$S_{${currentSelectInteger}} \\text{ has order: }${currentSelectInteger}! = ${[1, 2, 6, 24, 120, 720, 5040][currentSelectInteger-1]}$`
     + `, $\\text{Identity}:\\ e=()$`
     setHeaderTag(tag)
-  }, [currentSelectInteger])
+  }, [currentSelectInteger, showAn])
 
 
   useEffect(() => {
@@ -286,6 +291,12 @@ export default function CayleyTable({}) {
           Show Even Permutation:
           <label className={[styles.switch, styles.tableunit].join(' ')}>
             <input type="checkbox" checked={showEvenPermutation} onChange={(e)=>{setShowEvenPermutation(e.target.checked)}}/>
+            <span className={[styles.slider, styles.round].join(' ')}></span>
+          </label>
+          <br/>
+          Show $A_n$:
+          <label className={[styles.switch, styles.tableunit].join(' ')}>
+            <input type="checkbox" checked={showAn} onChange={(e)=>{setShowAn(e.target.checked)}}/>
             <span className={[styles.slider, styles.round].join(' ')}></span>
           </label>
         </p>
