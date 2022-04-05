@@ -121,6 +121,14 @@
   box-shadow: 0 0 1px #2196F3;
 }
 
+.tablegoldbach input:checked + .slider {
+  background-color: #FF5555;
+}
+
+.tablegoldbach input:focus + .slider {
+  box-shadow: 0 0 1px #FF5555;
+}
+
 input:checked + .slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);

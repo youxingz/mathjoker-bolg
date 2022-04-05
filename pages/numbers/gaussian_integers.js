@@ -63,6 +63,8 @@ export default function CayleyTable({}) {
   const [gaussianPrimes, setGaussianPrimes] = useState(genGaussianPrimes(currentSelectX, currentSelectY))
   const [goldbachPrimes, setGoldbachPrimes] = useState(genGoldbachPrimes(currentSelectX, currentSelectY))
 
+  const [showGoldbach, setShowGoldbach] = useState(true)
+
   useEffect(() => {
     const primes = genGaussianPrimes(currentSelectX, currentSelectY)
     setGaussianPrimes(primes)
@@ -153,10 +155,16 @@ export default function CayleyTable({}) {
               [...Array(60).keys()].map(i => <option key={'k'+(i+1)}>{i+1}</option>)
             }
           </select>
+          <br/>
+          Show Goldbach Integers:
+          <label className={[styles.switch, styles.tablegoldbach].join(' ')}>
+            <input type="checkbox" checked={showGoldbach} onChange={(e)=>{setShowGoldbach(e.target.checked)}}/>
+            <span className={[styles.slider, styles.round].join(' ')}></span>
+          </label>
         </p>
       
         <div className={styles.cayley_table_header}>
-          The Gaussian Integer | Black dot is Gaussian Prime.
+          The Gaussian Integer | Black dot is Gaussian Prime | Red dot is $p_x+p_y=$ even number.
         </div>
         <div className={styles.cayley_table_container}>
           {/* <div style={{width: '100%'}} id="canvas"/> */}
@@ -184,6 +192,10 @@ export default function CayleyTable({}) {
               {
                 // x
                 [...Array(currentSelectX).keys()].map((number, index)=><text x={index*16+10} y={HEIGHT + X_OFFSET} style={{fontSize: 12}}>{number}</text>)
+              }
+              {
+                // points
+                showGoldbach && goldbachPrimes.map(point => <circle id={'p_gold2'+point[0]+'-'+point[1]} cx={Y_OFFSET+point[0]*16} cy={HEIGHT-point[1]*16} r="4" fill="#FF5555"/>)
               }
               {
                 // points
