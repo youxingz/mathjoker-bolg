@@ -43,7 +43,7 @@ export default function CayleyTable({}) {
   const [currentSelectX, setCurrentSelectX] = useState(40)
   const [currentSelectY, setCurrentSelectY] = useState(40)
 
-  const [currentHoverPoint, setCurrentHoverPoint] = useState([10,10])
+  const [currentHoverPoint, setCurrentHoverPoint] = useState([12,17])
 
   const [gaussianPrimes, setGaussianPrimes] = useState(genGaussianPrimes(currentSelectX, currentSelectY))
 
