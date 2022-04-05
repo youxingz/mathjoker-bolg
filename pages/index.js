@@ -10,6 +10,11 @@ import { useEffect } from 'react'
 
 const articles = [
   {
+    url: 'numbers/gaussian_integers',
+    date: '2022-04-05',
+    title: 'Gaussian Integers',
+  },
+  {
     url: 'numbers/polygonal_numbers',
     date: '2022-03-25',
     title: 'The Table of Polygonal Numbers',
