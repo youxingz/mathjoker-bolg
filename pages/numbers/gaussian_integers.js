@@ -168,7 +168,7 @@ export default function CayleyTable({}) {
         </div>
         <div className={styles.cayley_table_container}>
           {/* <div style={{width: '100%'}} id="canvas"/> */}
-          <div style={{width: '100%', overflow: 'scroll'}}>
+          <div style={{width: '100%'}}>
             <svg width={WIDTH} height={HEIGHT+20} xmlns="http://www.w3.org/2000/svg">
               <defs>
                 <pattern id="smallGrid" width="16" height="16" patternUnits="userSpaceOnUse">
@@ -220,7 +220,7 @@ export default function CayleyTable({}) {
         </div>
         <div className={styles.cayley_table_container}>
           {/* <div style={{width: '100%'}} id="canvas"/> */}
-          <div style={{width: '100%', overflow: 'scroll'}}>
+          <div style={{width: '100%'}}>
             <svg width={WIDTH} height={HEIGHT+20} xmlns="http://www.w3.org/2000/svg">
               <defs>
                 <pattern id="smallGrid" width="16" height="16" patternUnits="userSpaceOnUse">
