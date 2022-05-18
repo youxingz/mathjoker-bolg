@@ -29,6 +29,16 @@ const articles = [
     date: '2022-03-23',
     title: 'The Cayley Table of Integer Module N ($\\mathbb Z/n\\mathbb Z$)',
   },
+  {
+    url: 'files/presentation.pdf',
+    date: '2022-05-19',
+    title: 'PDF Presentation',
+  },
+  {
+    url: 'files/presentation.pptx',
+    date: '2022-05-19',
+    title: 'PPT Presentation',
+  }
 ]
 
 export default function Home({ allPostsData }) {
