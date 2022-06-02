@@ -38,6 +38,11 @@ const articles = [
     url: 'files/presentation.pptx',
     date: '2022-05-19',
     title: 'PPT Presentation',
+  },
+  {
+    url: 'files/eassy.pdf',
+    date: '2022-06-02',
+    title: 'Final Thesis',
   }
 ]
 
