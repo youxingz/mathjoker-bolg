@@ -52,7 +52,7 @@ export default function Home({ allPostsData }) {
   }, [])
 
   return (
-    <Layout home>
+    <Layout home={false}>
       <Head>
         <title>{siteTitle}</title>
       </Head>

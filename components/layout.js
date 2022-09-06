@@ -7,7 +7,7 @@ import Link from 'next/link'
 const name = 'Youxing Z'
 export const siteTitle = 'MathJoker'
 
-export default function Layout({ children, home }) {
+export default function Layout({ children, home, note, previous }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -17,7 +17,7 @@ export default function Layout({ children, home }) {
         {/* <meta name="twitter:card" content="summary_large_image" /> */}
       </Head>
       <header className={styles.header}>
-        {home ? (
+        {!home ? (
           <>
             <Image
               priority
@@ -52,10 +52,24 @@ export default function Layout({ children, home }) {
         )}
       </header>
       <main>{children}</main>
-      {!home && (
+      {!!home && (
         <div className={styles.backToHome}>
           <Link href="/">
             <a>← Back to Cover</a>
+          </Link>
+        </div>
+      )}
+      {!!note && (
+        <div className={styles.backToHome}>
+          <Link href="/notes">
+            <a>← Back to Cover</a>
+          </Link>
+        </div>
+      )}
+      {!!previous && (
+        <div className={styles.backToHome}>
+          <Link href={previous}>
+            <a>← Back to Content</a>
           </Link>
         </div>
       )}

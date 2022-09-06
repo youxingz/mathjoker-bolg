@@ -3,7 +3,7 @@ import '../styles/global.css'
 // import '../lib/katex/katex.mjs'
 import renderLatex from '../lib/katex_render'
 import hljs from 'highlight.js'
-import 'highlight.js/styles/atom-one-dark.css'
+import 'highlight.js/styles/atom-one-light.css'
 
 import { useEffect } from "react";
 
