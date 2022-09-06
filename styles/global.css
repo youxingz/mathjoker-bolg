@@ -59,9 +59,21 @@ img {
   display: block;
 }
 
+p code {
+  /* border: 1px #ddd solid; */
+  padding: 1px 6px 2.6px 6px;
+  border-radius: 4px;
+  background-color: #2f2f2f;
+  color: white;
+  font-size: 14px;
+  font-weight: 200;
+}
 pre>code {
   padding: 12px !important;
   border: 1px #eee solid;
   border-radius: 4px;
   font-size: 0.8rem;
+}
+.katex-display {
+  overflow: scroll;
 }

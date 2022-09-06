@@ -4,6 +4,8 @@ import Head from 'next/head'
 import Date from '../../components/date'
 import Link from 'next/link'
 import utilStyles from '../../styles/utils.module.css'
+import { useEffect } from 'react'
+import renderLatex from '/lib/katex_render'
 
 export default function SlugPage({ postData }) {
   switch (postData.layout) {
@@ -21,24 +23,29 @@ export default function SlugPage({ postData }) {
   }
 }
 
-function Content({ contentData, contentTitle }) {
+function Content(props) {
+  const { contentData, contentTitle } = props
+  useEffect(() => {
+    renderLatex()
+  }, [props.contentTitle])
+
   return (
     <Layout note>
       <Head>
         <title>{siteTitle} | { contentTitle || 'Notes' }</title>
       </Head>
-      <section className={utilStyles.headingMd}>
+      {/* <section className={utilStyles.headingMd}>
         <p>
           Hello, I’m <strong>Youxing Z</strong>.
         </p>
         <p>
           Here are some notes about Mathematics and Computer Science.
         </p>
-      </section>
+      </section> */}
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Content { contentTitle && `of ${contentTitle}` }</h2>
         <ul className={utilStyles.list}>
-          {contentData.filter(file => !file.hide).map(({ slug, title, date }) => (
+          {contentData.filter(file => !file.hide && file.title).map(({ slug, title, date }) => (
             <li className={utilStyles.listItem} key={slug.join('/')}>
               <Link href={`/notes/${slug.join('/')}`}>
                 <a>{title}</a>
@@ -55,12 +62,17 @@ function Content({ contentData, contentTitle }) {
   )
 }
 
-function Post({ postData }) {
+function Post(props) {
+  const { postData } = props
+  useEffect(() => {
+    renderLatex()
+  }, [props.postData])
+
   // console.log({ postData })
   return (
     <Layout previous={`/notes/${postData.backto}`}>
       <Head>
-        <title>{postData.title}</title>
+        <title>{postData.title} | {siteTitle}</title>
       </Head>
       <article>
       {/* <h1 className={utilStyles.headingXl}>{postData.title}</h1> */}
