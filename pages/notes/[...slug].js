@@ -56,7 +56,7 @@ function Content({ contentData, contentTitle }) {
 }
 
 function Post({ postData }) {
-  console.log({ postData })
+  // console.log({ postData })
   return (
     <Layout previous={`/notes/${postData.backto}`}>
       <Head>
