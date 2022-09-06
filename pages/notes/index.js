@@ -1,8 +1,12 @@
 import Head from 'next/head'
+import { useEffect } from 'react'
 import Layout, { siteTitle } from '../../components/layout'
 import utilStyles from '../../styles/utils.module.css'
 
 export default function Home({ allPostsData }) {
+  useEffect(() => {
+    window.location.href = '/notes/index'
+  }, [])
   return (
     <Layout home={false}>
       <Head>
@@ -17,16 +21,16 @@ export default function Home({ allPostsData }) {
   )
 }
 
-export async function getStaticProps() {
-  // const allPostsData = getNoteHomePagePostList()
-  return {
-    // props: {
-    //   allPostsData
-    // },
-    redirect: {
-      destination: '/notes/index',
-      permanent: true,
-      // statusCode: 301
-    },
-  }
-}
+// export async function getStaticProps() {
+//   // const allPostsData = getNoteHomePagePostList()
+//   return {
+//     // props: {
+//     //   allPostsData
+//     // },
+//     redirect: {
+//       destination: '/notes/index',
+//       permanent: true,
+//       // statusCode: 301
+//     },
+//   }
+// }

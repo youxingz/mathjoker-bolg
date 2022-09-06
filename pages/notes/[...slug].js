@@ -7,7 +7,9 @@ import utilStyles from '../../styles/utils.module.css'
 import { useEffect } from 'react'
 import renderLatex from '/lib/katex_render'
 
-export default function SlugPage({ postData }) {
+export default function SlugPage(props) {
+  const { postData } = props
+  if (!postData) return <div>404</div>
   switch (postData.layout) {
     case 'content-list':
       return Content({
@@ -99,12 +101,12 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   // return {props: { postData: { title: 'x?'} }}
   const postData = await getOnePostData(params.slug)
-  // if (postData) {
-  return {
-    props: {
-      postData
+  if (postData) {
+    return {
+      props: {
+        postData
+      }
     }
   }
-  // }
-  // return { notFound: true }
+  return { notFound: true }
 }
