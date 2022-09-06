@@ -1,5 +1,5 @@
 import Layout, { siteTitle } from '../../components/layout'
-import { getAllPosts, getPostData } from '../../lib/notes'
+import { getAllPosts, getOnePostData } from '../../lib/notes'
 import Head from 'next/head'
 import Date from '../../components/date'
 import Link from 'next/link'
@@ -13,12 +13,11 @@ export default function SlugPage({ postData }) {
         contentTitle: postData.title,
       })
     case 'content-custom':
-      return Content({
-        contentData: postData.contentList || [],
-        contentTitle: postData.title,
-      })
+      return Post({ postData })
     case 'post':
       return Post({ postData })
+    default:
+      throw Error('Unknown file type: []')
   }
 }
 
@@ -26,7 +25,7 @@ function Content({ contentData, contentTitle }) {
   return (
     <Layout note>
       <Head>
-        <title>{siteTitle}</title>
+        <title>{siteTitle} | { contentTitle || 'Notes' }</title>
       </Head>
       <section className={utilStyles.headingMd}>
         <p>
@@ -57,8 +56,9 @@ function Content({ contentData, contentTitle }) {
 }
 
 function Post({ postData }) {
+  console.log({ postData })
   return (
-    <Layout previous={`${postData.backto}`}>
+    <Layout previous={`/notes/${postData.backto}`}>
       <Head>
         <title>{postData.title}</title>
       </Head>
@@ -75,22 +75,18 @@ function Post({ postData }) {
 }
 
 export async function getStaticPaths() {
-  const paths = getAllPosts().map(file => {
-    console.log(file.slug)
-    return {
-      params: { slug: file.slug },
-    }
-  })
-  console.log({ paths })
   return {
-    paths,
-    fallback: false
+    paths: getAllPosts().map(file => {
+      // console.log('FILE::>>', file)
+      return { params: { slug: file.slug } }
+    }),
+    fallback: true
   }
 }
 
 export async function getStaticProps({ params }) {
   // return {props: { postData: { title: 'x?'} }}
-  const postData = await getPostData(params.slug)
+  const postData = await getOnePostData(params.slug)
   // if (postData) {
   return {
     props: {
