@@ -10,6 +10,11 @@ import { useEffect } from 'react'
 
 const articles = [
   {
+    url: 'notes',
+    date: '2022-09-06',
+    title: 'Some Notes'
+  },
+  {
     url: 'numbers/gaussian_integers',
     date: '2022-04-05',
     title: 'Gaussian Integers',

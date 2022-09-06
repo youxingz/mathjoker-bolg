@@ -75,5 +75,7 @@ pre>code {
   font-size: 0.8rem;
 }
 .katex-display {
-  overflow: scroll;
+  /* display: inline !important; */
+  overflow-x: scroll;
+  overflow-y: hidden;
 }
