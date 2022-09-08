@@ -5,7 +5,7 @@ import utilStyles from '../../styles/utils.module.css'
 
 export default function Home({ allPostsData }) {
   useEffect(() => {
-    window.location.href = '/notes/index'
+    // window.location.href = '/notes/index'
   }, [])
   return (
     <Layout home={false}>
@@ -21,16 +21,20 @@ export default function Home({ allPostsData }) {
   )
 }
 
-// export async function getStaticProps() {
-//   // const allPostsData = getNoteHomePagePostList()
-//   return {
-//     // props: {
-//     //   allPostsData
-//     // },
-//     redirect: {
-//       destination: '/notes/index',
-//       permanent: true,
-//       // statusCode: 301
-//     },
-//   }
-// }
+export async function getStaticProps({ params }) {
+  // const allPostsData = getNoteHomePagePostList()
+  console.log({ params })
+  if (!params) {
+    return {
+      // props: {
+      //   allPostsData
+      // },
+      redirect: {
+        destination: '/notes/index',
+        permanent: true,
+        // statusCode: 301
+      },
+    }
+  }
+  return { props: {} }
+}
