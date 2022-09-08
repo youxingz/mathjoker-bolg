@@ -21,10 +21,10 @@ export default function Home({ allPostsData }) {
   )
 }
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps(context) {
   // const allPostsData = getNoteHomePagePostList()
-  console.log({ params })
-  if (!params) {
+  // console.log({ params })
+  if (context) {
     return {
       // props: {
       //   allPostsData
