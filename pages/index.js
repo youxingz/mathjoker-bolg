@@ -10,7 +10,7 @@ import { useEffect } from 'react'
 
 const articles = [
   {
-    url: 'notes',
+    url: 'notes/index',
     date: '2022-09-06',
     title: 'Some Notes'
   },
