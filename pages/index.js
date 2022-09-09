@@ -60,7 +60,7 @@ export default function Home({ allPostsData }) {
     <Layout home={false}>
       <Head>
         <title>{siteTitle} | </title>
-        <meta name="description" content={"Mathematic notes & algorithms"}></meta>
+        <meta name="description" content={"Mathematic notes & algorithms | Math Joker is not joker since 小丑竟是你自己!"}></meta>
         <script type="application/ld+json">
         {{
           "@context": "https://schema.org",
