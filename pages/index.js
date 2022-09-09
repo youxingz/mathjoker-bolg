@@ -62,7 +62,7 @@ export default function Home({ allPostsData }) {
         <title>{siteTitle} | </title>
         <meta name="description" content={"Mathematic notes & algorithms | Math Joker is not joker since 小丑竟是你自己!"}></meta>
         <script type="application/ld+json">
-        {{
+        {`{
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           "itemListElement": [{
@@ -81,7 +81,7 @@ export default function Home({ allPostsData }) {
             "name": "Polygonal Numbers",
             "item": "https://www.mathjoker.com/numbers/polygonal_numbers"
           }]
-        }}
+        }`}
         </script>
       </Head>
       <section className={utilStyles.headingMd}>
