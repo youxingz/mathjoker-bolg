@@ -35,6 +35,7 @@ function Content(props) {
     <Layout note>
       <Head>
         <title>{siteTitle} | { contentTitle || 'Notes' }</title>
+        <meta name="description" content={`Mathematic notes & algorithms | ${contentTitle || 'Notes'}`}></meta>
       </Head>
       {/* <section className={utilStyles.headingMd}>
         <p>
@@ -75,6 +76,7 @@ function Post(props) {
     <Layout previous={`/notes/${postData.backto}`}>
       <Head>
         <title>{postData.title} | {siteTitle}</title>
+        <meta name="description" content={`Mathematic notes & algorithms | ${postData.title}`}></meta>
       </Head>
       <article>
       {/* <h1 className={utilStyles.headingXl}>{postData.title}</h1> */}

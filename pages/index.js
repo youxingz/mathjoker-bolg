@@ -59,7 +59,30 @@ export default function Home({ allPostsData }) {
   return (
     <Layout home={false}>
       <Head>
-        <title>{siteTitle}</title>
+        <title>{siteTitle} | </title>
+        <meta name="description" content={"Mathematic notes & algorithms"}></meta>
+        <script type="application/ld+json">
+        {{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Notes",
+            "item": "https://www.mathjoker.com/notes/index"
+          },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Cayley Table of Symmetric Group",
+            "item": "https://www.mathjoker.com/algebra/cayley_table_of_symmetric_group"
+          },{
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Polygonal Numbers",
+            "item": "https://www.mathjoker.com/numbers/polygonal_numbers"
+          }]
+        }}
+        </script>
       </Head>
       <section className={utilStyles.headingMd}>
         <p>
