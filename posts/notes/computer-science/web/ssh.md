@@ -1,6 +1,6 @@
 ---
-title: Use SSH Public Key Authentication
-date: 2022-09-15
+title: "Use SSH Public Key Authentication"
+date: "2022-09-15"
 ---
 
 Without use any prompt password, `ssh` provides a beautiful way to run ssh command.
