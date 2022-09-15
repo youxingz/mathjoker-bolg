@@ -7,6 +7,8 @@ import Link from 'next/link'
 const name = 'Youxing Z'
 export const siteTitle = 'MathJoker'
 
+const googleScript = "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-0TMGSRQ4NV');"
+
 export default function Layout({ children, home, note, previous }) {
   return (
     <div className={styles.container}>
@@ -19,7 +21,7 @@ export default function Layout({ children, home, note, previous }) {
         {/* <!-- Google tag (gtag.js) --> */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-0TMGSRQ4NV"></script>
         <script>
-          {"window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-0TMGSRQ4NV');"}
+          { googleScript }
         </script>
       </Head>
       <header className={styles.header}>
