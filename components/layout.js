@@ -15,6 +15,12 @@ export default function Layout({ children, home, note, previous }) {
         <meta name="description" content="Are You Human?" />
         <meta name="og:title" content={siteTitle} />
         {/* <meta name="twitter:card" content="summary_large_image" /> */}
+
+        {/* <!-- Google tag (gtag.js) --> */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-0TMGSRQ4NV"></script>
+        <script>
+          {`window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-0TMGSRQ4NV');`}
+        </script>
       </Head>
       <header className={styles.header}>
         {!home ? (
