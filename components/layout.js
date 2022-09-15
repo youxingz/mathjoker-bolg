@@ -19,7 +19,7 @@ export default function Layout({ children, home, note, previous }) {
         {/* <!-- Google tag (gtag.js) --> */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-0TMGSRQ4NV"></script>
         <script>
-          {`window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-0TMGSRQ4NV');`}
+          {"window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-0TMGSRQ4NV');"}
         </script>
       </Head>
       <header className={styles.header}>
