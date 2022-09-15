@@ -59,7 +59,7 @@ export default function Home({ allPostsData }) {
 
   return (
     <Layout home={false}>
-      <Script type="application/ld+json">
+      <Script type="application/ld+json" strategy="beforeInteractive">
         {`{
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
