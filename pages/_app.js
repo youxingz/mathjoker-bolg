@@ -18,5 +18,12 @@ export default function App({ Component, pageProps }) {
     // console.log({ lang: hljs.listLanguages() })
   }, [])
 
-  return <Component {...pageProps} />
+  return <>
+      {/* <!-- Google tag (gtag.js) --> */}
+      <Script async src="https://www.googletagmanager.com/gtag/js?id=G-0TMGSRQ4NV" strategy="beforeInteractive"/>
+      <Script id="google-analytics" strategy="beforeInteractive">
+        { "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-0TMGSRQ4NV');" }
+      </Script>
+      <Component {...pageProps} />
+  </>
 }

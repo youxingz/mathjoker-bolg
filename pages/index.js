@@ -59,10 +59,7 @@ export default function Home({ allPostsData }) {
 
   return (
     <Layout home={false}>
-      <Head>
-        <title>{siteTitle} | </title>
-        <meta name="description" content={"Mathematic notes & algorithms | Math Joker is not joker since 小丑竟是你自己!"}></meta>
-        <Script type="application/ld+json">
+      <Script type="application/ld+json">
         {`{
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
@@ -83,7 +80,10 @@ export default function Home({ allPostsData }) {
             "item": "https://www.mathjoker.com/numbers/polygonal_numbers"
           }]
         }`}
-        </Script>
+      </Script>
+      <Head>
+        <title>{siteTitle} | </title>
+        <meta name="description" content={"Mathematic notes & algorithms | Math Joker is not joker since 小丑竟是你自己!"}></meta>
       </Head>
       <section className={utilStyles.headingMd}>
         <p>
