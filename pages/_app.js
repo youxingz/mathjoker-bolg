@@ -5,6 +5,7 @@ import renderLatex from '../lib/katex_render'
 import hljs from 'highlight.js'
 // import 'highlight.js/styles/atom-one-light.css'
 import 'highlight.js/styles/atom-one-dark.css'
+import Script from 'next/script'
 
 import { useEffect } from "react";
 
