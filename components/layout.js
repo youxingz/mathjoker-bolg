@@ -11,6 +11,9 @@ export const siteTitle = 'MathJoker'
 export default function Layout({ children, home, note, previous }) {
   return (
     <div className={styles.container}>
+      <Script id="google-analytics" strategy="afterInteractive">
+        { "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-0TMGSRQ4NV');" }
+      </Script>
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta name="description" content="Are You Human?" />
@@ -19,9 +22,6 @@ export default function Layout({ children, home, note, previous }) {
 
         {/* <!-- Google tag (gtag.js) --> */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-0TMGSRQ4NV"></script>
-        <Script id="google-analytics" strategy="afterInteractive">
-          { "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-0TMGSRQ4NV');" }
-        </Script>
       </Head>
       <header className={styles.header}>
         {!home ? (
