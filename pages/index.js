@@ -4,6 +4,7 @@ import utilStyles from '../styles/utils.module.css'
 // import { getSortedPostsData } from '../lib/posts'
 import Link from 'next/link'
 import Date from '../components/date'
+import Script from 'next/script'
 
 import renderLatex from '/lib/katex_render'
 import { useEffect } from 'react'
@@ -61,7 +62,7 @@ export default function Home({ allPostsData }) {
       <Head>
         <title>{siteTitle} | </title>
         <meta name="description" content={"Mathematic notes & algorithms | Math Joker is not joker since 小丑竟是你自己!"}></meta>
-        <script type="application/ld+json">
+        <Script type="application/ld+json">
         {`{
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
@@ -82,7 +83,7 @@ export default function Home({ allPostsData }) {
             "item": "https://www.mathjoker.com/numbers/polygonal_numbers"
           }]
         }`}
-        </script>
+        </Script>
       </Head>
       <section className={utilStyles.headingMd}>
         <p>
