@@ -11,9 +11,9 @@ import { useEffect } from 'react'
 
 const articles = [
   {
-    url: 'notes/index',
+    url: 'posts/ecto-timezone',
     date: '2022-09-06',
-    title: 'Some Notes'
+    title: '记一次 Ecto 的时区问题'
   },
   {
     url: 'numbers/gaussian_integers',
@@ -35,16 +35,16 @@ const articles = [
     date: '2022-03-23',
     title: 'The Cayley Table of Integer Module N ($\\mathbb Z/n\\mathbb Z$)',
   },
-  {
-    url: 'files/presentation.pdf',
-    date: '2022-05-19',
-    title: 'PDF Presentation',
-  },
-  {
-    url: 'files/presentation.pptx',
-    date: '2022-05-19',
-    title: 'PPT Presentation',
-  },
+  // {
+  //   url: 'files/presentation.pdf',
+  //   date: '2022-05-19',
+  //   title: 'PDF Presentation',
+  // },
+  // {
+  //   url: 'files/presentation.pptx',
+  //   date: '2022-05-19',
+  //   title: 'PPT Presentation',
+  // },
   {
     url: 'files/eassy.pdf',
     date: '2022-06-02',
@@ -94,7 +94,9 @@ export default function Home({ allPostsData }) {
         </p>
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Blog</h2>
+        <h2 className={utilStyles.headingLg}>Blog {`& `} 
+          <span style={{fontSize: 20}}><a href="notes/index">Notes</a></span>
+        </h2>
         <ul className={utilStyles.list}>
           {articles.map(({ url, date, title }) => (
             <li className={utilStyles.listItem} key={url}>

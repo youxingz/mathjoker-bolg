@@ -10,6 +10,7 @@ import Script from 'next/script'
 import { useEffect } from "react";
 
 export default function App({ Component, pageProps }) {
+  // console.log({ pageProps })
   useEffect(() => {
     renderLatex()
     document.querySelectorAll('pre>code').forEach(el => {
@@ -17,7 +18,7 @@ export default function App({ Component, pageProps }) {
       hljs.highlightElement(el)
     })
     // console.log({ lang: hljs.listLanguages() })
-  }, [])
+  }, [pageProps.postData?.id])
 
   return <>
       {/* <!-- Google tag (gtag.js) --> */}
