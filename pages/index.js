@@ -12,7 +12,7 @@ import { useEffect } from 'react'
 const articles = [
   {
     url: 'posts/ecto-timezone',
-    date: '2022-09-06',
+    date: '2022-08-20',
     title: '记一次 Ecto 的时区问题'
   },
   {
