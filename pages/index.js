@@ -82,15 +82,19 @@ export default function Home({ allPostsData }) {
         }`}
       </Script>
       <Head>
-        <title>{siteTitle} | </title>
+        <title>{siteTitle}</title>
         <meta name="description" content={"Mathematic notes & algorithms | Math Joker is not joker since 小丑竟是你自己!"}></meta>
       </Head>
       <section className={utilStyles.headingMd}>
-        <p>
+        {/* <p>
           <strong>Definition 1.</strong> Let MathJoker be a person?al blog, which satisfies 3 properties: <br/>
           i). Post something people know. <br/>
           ii). Do not do 1. <br/>
           iii). Do not do 2. <br/>
+        </p> */}
+        <p className={utilStyles.sign}>
+          Art is a lie that tells the truth.
+          <span>-- Pablo Picasso</span>
         </p>
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>

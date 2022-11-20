@@ -51,7 +51,7 @@ export default function Layout({ children, home, note, previous }) {
           </>
         )}
       </header>
-      <main>{children}</main>
+      <main className={styles.main}>{children}</main>
       {!!home && (
         <div className={styles.backToHome}>
           <Link href="/">

@@ -1,3 +1,11 @@
+.sign {
+  font-style: italic;
+  text-align: right;
+}
+.sign>span {
+  display: block;
+  text-align: right;
+}
 .heading2Xl {
   font-size: 2.5rem;
   line-height: 1.2;
