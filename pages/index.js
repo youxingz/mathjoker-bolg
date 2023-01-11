@@ -46,7 +46,7 @@ const articles = [
   //   title: 'PPT Presentation',
   // },
   {
-    url: 'files/eassy.pdf',
+    url: 'file/eassy.pdf',
     date: '2022-06-02',
     title: 'Final Thesis',
   }
