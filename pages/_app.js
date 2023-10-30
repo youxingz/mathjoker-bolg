@@ -20,7 +20,7 @@ export default function App({ Component, pageProps }) {
       hljs.highlightElement(el)
     })
     // console.log({ lang: hljs.listLanguages() })
-  }, [pageProps.postData?.id, pageProps.postData])
+  }, [pageProps, pageProps.postData?.id, pageProps.postData])
 
   return <>
       {/* <!-- Google tag (gtag.js) --> */}
