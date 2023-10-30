@@ -10,15 +10,16 @@ import Script from 'next/script'
 import { useEffect } from "react";
 
 export default function App({ Component, pageProps }) {
-  console.log("??")
   // console.log({ pageProps })
   useEffect(() => {
     // console.log("Enter new page.")
-    renderLatex()
-    document.querySelectorAll('pre>code').forEach(el => {
-      // highlightBlock ?
-      hljs.highlightElement(el)
-    })
+    setTimeout(() => { // this makes latex/code work.
+      renderLatex()
+      document.querySelectorAll('pre>code').forEach(el => {
+        // highlightBlock ?
+        hljs.highlightElement(el)
+      })
+    }, 1);
     // console.log({ lang: hljs.listLanguages() })
   }, [pageProps, pageProps.postData?.id, pageProps.postData])
 

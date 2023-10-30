@@ -52,13 +52,108 @@ const articles = [
   }
 ]
 
+const leftArticles = []
+const rightArticles = [
+  {
+    url: 'notes/computer-science/elixir-meetup',
+    date: '2022-11-29',
+    title: 'Elixir Meetup 感想',
+  },
+  {
+    url: 'posts/ecto-timezone',
+    date: '2022-08-20',
+    title: '记一次 Ecto 的时区问题'
+  },
+]
+
+const LeftSide = () => {
+  return (
+    <div>
+      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+        <h2 className={utilStyles.headingLg}>About {` `} 
+          <span style={{fontSize: 20}}><a href="https://www.mathjoker.com">Mathjoker</a></span>
+        </h2>
+        <div>
+          <ul className={utilStyles.list}>
+            <li>
+              <div> Github: </div>
+              <a href='https://github.com/youxingz'>https://github.com/youxingz</a>
+            </li>
+            <li>
+              <div> Gmail: </div>
+              <a href='mailto://youxingzeta@gmail.com'>youxingzeta@gmail.com</a>
+            </li>
+          </ul>
+        </div>
+        <h4 className={utilStyles.headingMd}>Tags</h4>
+        <div>
+          <p class='tag'>
+            <code>Elixir</code>
+            <code>Java</code>
+            <code>C/C++</code>
+            <code>C#</code>
+            <code>Kotlin</code>
+            <code>Swift</code>
+            <code>JavaScript</code>
+            <code>Golang</code>
+            <code>Python</code>
+            <code>Matlab</code>
+            <code>Android</code>
+            <code>ComposeUI</code>
+            <code>Unity3D</code>
+            <code>iOS</code>
+            <code>ComposeDesktop</code>
+            <code>Electron.js</code>
+            <code>React</code>
+            <code>VueJS</code>
+            <code>SpringBoot</code>
+            <code>Phoenix</code>
+            <code>PostgreSQL</code>
+            <code>MySQL</code>
+            <code>BLE/Bluetooth</code>
+            <code>ESP32</code>
+            <code>NordicRF52</code>
+            <code>STM32</code>
+            <code>Algebra</code>
+          </p>
+        </div>
+      </section>
+    </div>
+  )
+}
+
+const RightSide = () => {
+  return (
+    <div>
+      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+        <h2 className={utilStyles.headingLg}>Recent {` `} 
+          <span style={{}}><a href="notes/index">Notes</a></span>
+        </h2>
+        <ul className={utilStyles.list}>
+          {rightArticles.map(({ url, date, title }) => (
+            <li className={utilStyles.listItem} key={url}>
+              <Link href={`/${url}`}>
+                <a>{title}</a>
+              </Link>
+              <br />
+              <small className={utilStyles.lightText}>
+                <Date dateString={date} />
+              </small>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </div>
+  )
+}
+
 export default function Home({ allPostsData }) {
   useEffect(() => {
     renderLatex()
   }, [])
 
   return (
-    <Layout home={false}>
+    <Layout home={false} left={ LeftSide() } right={ RightSide() }>
       <Script type="application/ld+json" strategy="beforeInteractive">
         {`{
           "@context": "https://schema.org",

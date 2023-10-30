@@ -67,12 +67,18 @@ p code {
   color: white;
   font-size: 14px;
   font-weight: 200;
+  display: inline-block;
 }
 pre>code {
   padding: 12px !important;
   border: 1px #eee solid;
   border-radius: 4px;
   font-size: 0.8rem;
+  display: inline-block;
+}
+.tag code {
+  margin-left: 0.18rem;
+  margin-right: 0.18rem;
 }
 .katex-display {
   /* display: inline !important; */
