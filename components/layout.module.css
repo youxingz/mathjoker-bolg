@@ -36,7 +36,7 @@
 
 .main {
   max-width: 42rem;
-  width: 42rem;
+  /* width: 42rem; */
   padding: 1.2rem 2rem;
   background-color: rgb(255, 255, 255);
   box-shadow: rgb(157, 165, 171) 0px 4px 2.4rem -0.4rem;
@@ -45,7 +45,7 @@
   padding-bottom: 2rem;
 }
 .side {
-  width: 20rem;
+  max-width: 20rem;
   padding: 1.2rem 2rem;
   background-color: rgb(255, 255, 255);
   box-shadow: rgb(157, 165, 171) 0px 4px 2.4rem -0.4rem;
