@@ -127,6 +127,9 @@ const LeftSide = () => {
             <code>GroupTheory</code>
             <code>Sagemath</code>
             <code>Algebra</code>
+            <code>DevOps</code>
+            <code>TDD</code>
+            <code>Scrum</code>
           </p>
         </div>
       </section>
