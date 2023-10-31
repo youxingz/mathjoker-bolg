@@ -5,6 +5,8 @@ date: "2023-10-31"
 
 `Nordic` 的 `nRF52` 系列芯片除了基本的蓝牙能力非常出色之外，也配备了很多性能不错的外设，比如这次探讨的 `PWM` 模块。后文的所有代码及示例如无特别说明都是基于 `nRF52840` 来测试运行，一般来说在诸如 `nRF52832` `nRF52833` 这些芯片上也能完整运行。
 
+### PWM 模块介绍
+
 `PWM` 模块共有 4 组，分别是 `PWM0` `PWM1` `PWM2` `PWM3`，如果使用的是 SoftDevice 模式开发，需要在 `sdkconfig.h` 文件中开启对应的 `enable` 宏，如果是在 `Zephyr OS` 下开发，也只需要在 `proj.conf` 文件中配置如 `CONFIG_NRFX_PWM0=y` 即可。
 
 ![Topology of nRF52 PWM module](/images/nrf52-pwm.png)
@@ -20,6 +22,8 @@ date: "2023-10-31"
 
 ![Up And Down Mode](/images/nrf52-wavecounter-up-down.png)
 *Up And Down Mode*
+
+### 示例
 
 我们来看一段简单的示例代码：
 
@@ -55,6 +59,7 @@ nrfx_err_t err_code = nrfx_pwm_init(&m_pwm0, &config, NULL, NULL);
 static nrf_pwm_values_common_t dutys[1];
 /* 考虑使用 Up Mode，所以在比较曲线上升的时候 OUT[0] 会在 200 时刻变换信号，换算为占空比（低电平为空）便是 80% */
 /* duty = (1000 - 200) / 1000 = 80% */
+/* 如果要输出相反的高低电平信号，设置符号位为 1 即可，即：dutys[0] = 200 | 0x8000; */
 dutys[0] = 200;
 
 nrf_pwm_values_t values = {
@@ -70,3 +75,9 @@ uint16_t repeat_count = 666; /* repeat this signal 666 times */
 /* start pwm */
 uint32_t task_address = nrfx_pwm_simple_playback(&m_pwm0, &sequence, repeat_count, NRFX_PWM_FLAG_STOP);
 ```
+
+PWM 的 `load mode` 有 4 中，上述使用的是第一种 (`common` 模式)，一般来说上述代码便已经满足了大多数场景下 PWM 的使用，比如电机驱动、占空波形发生等。但为了充分使用 `nRF52` 的 PWM 模块，我们再列一下其余三种模式： `grouped` `individual` `wave form`.
+
+#### Grouped Mode
+
+在 `Grouped Mode` 下，
