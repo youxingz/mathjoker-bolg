@@ -81,7 +81,7 @@ const LeftSide = () => {
             </li>
             <li>
               <div> Gmail: </div>
-              <a href='mailto://youxingzeta@gmail.com'>youxingzeta@gmail.com</a>
+              <a href='mailto:youxingzeta@gmail.com'>youxingzeta@gmail.com</a>
             </li>
           </ul>
         </div>
@@ -103,9 +103,12 @@ const LeftSide = () => {
             <code>Unity3D</code>
             <code>iOS</code>
             <code>ComposeDesktop</code>
+            <code>NodeJS</code>
             <code>Electron.js</code>
             <code>React</code>
             <code>VueJS</code>
+            <code>WeChatMiniapp</code>
+            <code>Docker</code>
             <code>SpringBoot</code>
             <code>Phoenix</code>
             <code>PostgreSQL</code>
@@ -114,6 +117,15 @@ const LeftSide = () => {
             <code>ESP32</code>
             <code>NordicRF52</code>
             <code>STM32</code>
+            <code>Arduino</code>
+            <code>Zephyr</code>
+            <code>Modbus</code>
+            <code>OPCUA</code>
+            <code>gRPC</code>
+            <code>Monkey</code>
+            <code>League of Legends</code>
+            <code>GroupTheory</code>
+            <code>Sagemath</code>
             <code>Algebra</code>
           </p>
         </div>
