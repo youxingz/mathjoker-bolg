@@ -55,6 +55,11 @@ const articles = [
 const leftArticles = []
 const rightArticles = [
   {
+    url: 'notes/embedded/nrf-pwm',
+    date: '2023-10-31',
+    title: 'Noridc nRF52 PWM',
+  },
+  {
     url: 'notes/computer-science/elixir-meetup',
     date: '2022-11-29',
     title: 'Elixir Meetup 感想',
