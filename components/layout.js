@@ -76,14 +76,14 @@ export default function Layout({ children, left=null, right=null, home, note, pr
           <main className={styles.main} style={ fullScreen ? { width: '100%' } : { width: '800px'} }>{children}</main>
           {right && <side className={styles.side}>{right}</side>}
         </div>
-        : <div className={[styles.flex_flow].join(' ')} style={ fullScreen ? { width: '100%' } : { width: '800px', alignSelf: 'center'} }>
+        : <div className={[styles.flex_flow].join(' ')} style={ fullScreen ? { width: '100%' } : { width: '24rem', alignSelf: 'center'} }>
           <main className={styles.main}>{children}</main>
           {right && <side className={styles.main}>{right}</side>}
           {left && <side className={styles.main}>{left}</side>}
         </div>
       }
 
-      <div className={styles.back_footer}>
+      <div className={styles.back_footer} style={ fullScreen ? { width: '100%' } : { width: '800px', alignSelf: 'center'} }>
         {!!home && (
           <div className={styles.backToHome}>
             <Link href="/">
