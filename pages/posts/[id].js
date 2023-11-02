@@ -10,7 +10,7 @@ export default function Post({ postData }) {
       <Head>
         <title>{postData.title}</title>
       </Head>
-      <article>
+      <article className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
       {/* <h1 className={utilStyles.headingXl}>{postData.title}</h1> */}
         <h2>{postData.title}</h2>
         <div className={utilStyles.lightText}>

@@ -11,7 +11,7 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif; */
   line-height: 1.6;
   /* font-size: 18px; */
-  font-size: 1rem;
+  font-size: 100%;
   scroll-behavior: smooth;
 }
 
@@ -65,7 +65,7 @@ p code {
   border-radius: 4px;
   background-color: #484848;
   color: white;
-  font-size: 14px;
+  font-size: 0.8rem;
   font-weight: 200;
   display: inline-block;
 }

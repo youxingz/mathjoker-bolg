@@ -45,22 +45,24 @@ function Content(props) {
           Here are some notes about Mathematics and Computer Science.
         </p>
       </section> */}
-      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Content { contentTitle && `of ${contentTitle}` }</h2>
-        <ul className={utilStyles.list}>
-          {contentData.filter(file => !file.hide && file.title).map(({ slug, title, date }) => (
-            <li className={utilStyles.listItem} key={slug.join('/')}>
-              <Link href={`/notes/${slug.join('/')}`}>
-                <a>{title}</a>
-              </Link>
-              <br />
-              <small className={utilStyles.lightText}>
-                { date && <Date dateString={date} /> }
-              </small>
-            </li>
-          ))}
-        </ul>
-      </section>
+      {/* <main> */}
+        <article className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+          <h2 className={utilStyles.headingLg}>Content { contentTitle && `of ${contentTitle}` }</h2>
+          <ul className={utilStyles.list}>
+            {contentData.filter(file => !file.hide && file.title).map(({ slug, title, date }) => (
+              <li className={utilStyles.listItem} key={slug.join('/')}>
+                <Link href={`/notes/${slug.join('/')}`}>
+                  <a>{title}</a>
+                </Link>
+                <br />
+                <small className={utilStyles.lightText}>
+                  { date && <Date dateString={date} /> }
+                </small>
+              </li>
+            ))}
+          </ul>
+        </article>
+      {/* </main> */}
     </Layout>
   )
 }

@@ -10,20 +10,24 @@ export const siteTitle = 'MathJoker'
 
 
 const HIGH_WIDTH_SCREEN = 1400 // px.
+const FULL_WIDTH_SCREEN = 800  // px.
 export default function Layout({ children, left=null, right=null, home, note, previous }) {
   const [highScreen, setHighScreen] = useState(false)
+  const [fullScreen, setFullScreen] = useState(true)
 
   useEffect(() => {
     // document.createElement('side')
     // const { innerWidth: width, innerHeight: height } = window
     setHighScreen(window.innerWidth > HIGH_WIDTH_SCREEN)
+    setFullScreen(window.innerWidth < FULL_WIDTH_SCREEN)
     window.addEventListener('resize', () => {
       setHighScreen(window.innerWidth > HIGH_WIDTH_SCREEN)
+      setFullScreen(window.innerWidth < FULL_WIDTH_SCREEN)
     })
   }, [])
 
   return (
-    <div className={styles.container}>
+    <div className={highScreen ? styles.container_span : styles.container_flow}>
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta name="description" content="Are You Human?" />
@@ -69,10 +73,10 @@ export default function Layout({ children, left=null, right=null, home, note, pr
         (highScreen)
         ? <div className={styles.flex_span}>
           {left && <side className={styles.side}>{left}</side>}
-          <main className={styles.main}>{children}</main>
+          <main className={styles.main} style={ fullScreen ? { width: '100%' } : { width: '800px'} }>{children}</main>
           {right && <side className={styles.side}>{right}</side>}
         </div>
-        : <div className={styles.flex_flow}>
+        : <div className={[styles.flex_flow].join(' ')} style={ fullScreen ? { width: '100%' } : { width: '800px', alignSelf: 'center'} }>
           <main className={styles.main}>{children}</main>
           {right && <side className={styles.main}>{right}</side>}
           {left && <side className={styles.main}>{left}</side>}
