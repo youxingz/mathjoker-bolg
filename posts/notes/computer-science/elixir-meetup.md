@@ -66,3 +66,21 @@ Go 的 Channel 是全部进程都使用同一个队列，交给系统进行调�
 Elixir 与其说是一个语言，更准确地说应该是一套技术方案，开发者可以很方便地拿着 GenServer 一把梭，很少会担心那些非业务问题带来的烦恼。
 
 在提问环节，三位大佬分享了为什么选择 Elixir 以及如何学习 Elixir —— 当然是去看官方教程然后做做项目练手，大家果然都是这么过来的。至于为什么选择 Elixir，我相信这次 meetup 的内容已经很好地给出了一个答案。
+
+### 注
+
+Meetup 视频录制：
+
+[Elixir Meetup - Tubi 如何将一个无人维护的旧系统平稳无感地迁移到 Elixir 上](https://www.bilibili.com/video/BV1jM41167gu/?share_source=copy_web)
+
+[Elixir Meetup - 用 Elixir 开发 WebRTC 应用](https://www.bilibili.com/video/BV1T84y1k78x/?share_source=copy_web)
+
+[Elixir Meetup - 分布式虚拟玩家](https://www.bilibili.com/video/BV1x84y1k7pm/?share_source=copy_web)
+
+Tubi 知乎及公众号文章：
+
+[知乎：2022 年 11 月 Elixir Meetup
+](https://zhuanlan.zhihu.com/p/588685728)
+
+[B站：2022 年 11 月 Elixir Meetup
+](https://mp.weixin.qq.com/s?__biz=MzU4NzYxOTkyOQ==&mid=2247517454&idx=1&sn=2348f9273e662263bce01653cff20c91&chksm=fdeb8e38ca9c072e89e0abbc4bd6355f7f63e1227d0574f91e458ccc02312f274f23aa7bf296&token=1930871346&lang=zh_CN#rd)
